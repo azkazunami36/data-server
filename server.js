@@ -14,7 +14,7 @@ app.listen(port, () => {
     console.info("Listening on " + port);
 });
 
-app.get("/", function (req, res) {
+app.get("/*", function (req, res) {
     console.log("GETリクエストを受信しました。");
     const param = url.parse(req.url);
 
@@ -22,7 +22,7 @@ app.get("/", function (req, res) {
     res.end(fs.readFileSync(filename));
 });
 
-app.post("/", function (req, res) {
+app.post("/*", function (req, res) {
     console.log("POSTリクエストを受信しました。");
 
     var data = "";
