@@ -35,11 +35,10 @@ app.post("/*", async (req, res) => {
             console.log("要求: " + json[0]);
             database[json[0]] = json[1];
             fs.writeFileSync(filename, JSON.stringify(database, null, "  "));
-        };
+        } else {console.log("要求はありません。")};
 
         res.header("Content-Type", "text/plain;charset=utf-8");
         res.end(JSON.stringify(database));
-        console.log(database)
     });
 
 });
