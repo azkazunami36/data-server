@@ -22,7 +22,7 @@ app.post("/*", async (req, res) => {
     req.on("end", async () => {
         if (!fs.existsSync(filename)) fs.writeFileSync(filename, JSON.stringify({}));
         const database = JSON.parse(fs.readFileSync(filename));
-        console.log(data)
+        console.log(data);
         const json = JSON.parse(data);
         if (json[0]) {
             console.log("要求: " + json[0]);
