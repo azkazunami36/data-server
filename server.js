@@ -26,11 +26,13 @@ app.post("/*", async (req, res) => {
         const json = JSON.parse(data);
         if (json[0]) {
             console.log("要求: " + json[0]);
-            database[json[0]] = json[1];
+            if (json[1]) database[json[0]] = json[1];
             fs.writeFileSync(filename, JSON.stringify(database, null, "  "));
-        } else console.log("要求はありません。");
-
-        res.header("Content-Type", "text/plain;charset=utf-8");
-        res.end(JSON.stringify(database));
+            res.header("Content-Type", "text/plain;charset=utf-8");
+            res.end(JSON.stringify(database[json[0]]));
+        } else {
+            console.log("要求はありません。");
+            res.end();
+        };
     });
 });
