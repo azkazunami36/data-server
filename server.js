@@ -26,6 +26,7 @@ app.post("/*", async (req, res) => {
         const json = JSON.parse(data);
         if (json[0]) {
             console.log("要求: " + json[0]);
+            if (!database[json[0]]) database[json[0]] = {}
             if (json[1]) database[json[0]] = json[1];
             fs.writeFileSync(filename, JSON.stringify(database, null, "  "));
             res.header("Content-Type", "text/plain;charset=utf-8");
